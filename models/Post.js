@@ -1,6 +1,9 @@
 const db = require('./db')
-
-const Post = db.sequelize.define('postagens',{
+// conecxão com a tabela de postagens
+const Post = db.tabela.define('postagens',{
+    user: {
+        type: db.Sequelize.TEXT
+    },
     titulo: {
         type: db.Sequelize.STRING
     },
