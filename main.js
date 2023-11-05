@@ -6,6 +6,8 @@ const flash = require('connect-flash')
 const app = express()
 const Port = 1324
 const CreateUser = require('./models/CreateUser')
+require("dotenv")
+require("./.env")
 
 //config
     //templaye engine
@@ -18,9 +20,10 @@ app.set('view engine', 'handlebars')
 
 // Sessão
 app.use(session({
-    secret:'projetodificil',
-    resave: true,
-    saveUninitialized: true
+    secret:process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {secure: false, maxAge: 20000}
 }))
 app.use(flash())
 
@@ -37,7 +40,8 @@ app.use(bodyParser.json())
 // rotas
 
 app.get('/', (req, res) => {
-    res.render('home')
+    console.log(req.session.login)
+    res.render("home")
 })
 
 app.get('/login', (req, res) => {
@@ -49,10 +53,10 @@ app.get('/cad', (req, res) => {
 })
 
 app.get('/feed', (req, res) => {
-
+    res.render('feed')
 })
 
-app.post('/cadastrado', (req, res) => {
+app.post('/cadastrar', (req, res) => {
     let erros = []
 
     if(req.body.users == "") 
@@ -84,7 +88,7 @@ app.post('/cadastrado', (req, res) => {
             }
             else {
                 CreateUser.create({
-                    names: req.body.users,
+                    names: req.body.names,
                     email: req.body.email,
                     passwords: req.body.passwords
                 })
@@ -99,10 +103,48 @@ app.post('/cadastrado', (req, res) => {
             console.log("Houve um erro interno: "+ error)
         })
     }
-    
 })
 
+app.post("/logar", (req, res) => {
+    
+    if(req.body.email == "" || req.body.passwords == "") {
+        console.log("Por favor, Preencher os campos necessários")
+        res.redirect('/login')
+    }
+    else {
+        CreateUser.findOne({where: {email: req.body.email, passwords: req.body.passwords}}).then((usuario) => {
+            if(!usuario) {
+                console.log("Usuario não encontrado, Senha ou Email errado")
+                res.redirect('/login')
+            }
+            else {
+                const {names: names, email: email} = usuario
+                req.session.login = names
+                console.log(req.session.login)
+                res.redirect('/')
+            }
+        }).catch((error) =>{
+            console.log("Houve um erro interno: " +error)
+        })
+    }  
+})
 
+app.post('/deslogar', (req, res) => {
+    if(req.session.login) {
+        req.session.destroy((error) => {
+            if(error) {
+                console.log(error)
+            }
+            else {
+                res.redirect('/')
+            }
+        })
+    }
+    else {
+        console.log("Você não está logado em uma conta no momento")
+        res.redirect('/')
+    }
+})
 
 app.listen(Port, () => {
     console.log("servidor está rodando")
