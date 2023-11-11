@@ -1,0 +1,11 @@
+
+<form method="post" action="/postar" enctype="multipart/form-data">
+    <h1>Qual será a postagem de hoje? {{usuarioLogado}}</h1>
+    <p>Titulo da postagem</p>
+    <input type="text" name="titulo">
+    <p>Imagem</p>
+    <input type="file" name="imagem_video" accept="image/png">
+    <p>Conteudo da postagem</p>
+    <input type="text" name="descricao">
+    <p><button type="submit">Enviar Postagem</button></p>
+</form>

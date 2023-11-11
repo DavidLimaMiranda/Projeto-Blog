@@ -2,13 +2,16 @@ require('dotenv').config()
 const db = require('./db')
 // conecxão com a tabela de postagens
 const Post = db.tabela.define(process.env.DB_TABELA_POSTAGENS, {
-    user: {
+    names: {
         type: db.Sequelize.TEXT
     },
     titulo: {
         type: db.Sequelize.STRING
     },
-    conteudo: {
+    imagem_video: {
+        type: db.Sequelize.TEXT
+    },
+    descricao: {
         type: db.Sequelize.TEXT
     }
 })
