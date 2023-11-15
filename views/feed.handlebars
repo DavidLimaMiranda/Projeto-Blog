@@ -1,8 +1,27 @@
-
-<h>POSTAGENS:</h1>
+<div>
+<h1>POSTAGENS:</h1>
 {{#each post}}
-<h1>{{names}}</h1>
-<p>{{titulo}}</p>
-<p><img src="/uploads/{{imagem_video}}"/> <p>
-<p>{{descricao}}<p>
+<h1>Perfil: {{names}}</h1>
+<h1>{{titulo}}</h1>
+<p><img src="/uploads/{{imagem_video}}" class="img"/> </p>
+<h1>{{descricao}}</h1>
 {{/each}}
+</div>
+<style>
+        body {
+            background-color: rgb(24, 23, 23);
+        }
+        h1{
+            color: rgb(233, 233, 233);
+            font-size: 30px;
+            height: 35px;
+        }
+        div {
+            text-align: center;
+        }
+        .img {
+            height: 20%;
+            width: 30%;
+            object-fit: cover;
+        }
+</style>

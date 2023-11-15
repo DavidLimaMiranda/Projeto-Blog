@@ -1,11 +1,75 @@
+{{#each erros}}
+    <div class="alert alert-danger"><h1 class="erros">{{erro}}</h1></div>
+{{else}}
+{{/each}}
+
 
 <form method="post" action="/postar" enctype="multipart/form-data">
+<div>
     <h1>Qual será a postagem de hoje? {{usuarioLogado}}</h1>
-    <p>Titulo da postagem</p>
+    <h1>Titulo da postagem:</h1>
     <input type="text" name="titulo">
-    <p>Imagem</p>
-    <input type="file" name="imagem_video" accept="image/png">
-    <p>Conteudo da postagem</p>
+    <h1>Selecione qual imagem quer postar: </h1>
+    <br></br>
+    <h1><label for="imagem" id="label">Clique aqui </label><h1>
+    <input type="file" name="imagem_video" id="imagem">
+    <h1>Conteudo da postagem:</h1>
     <input type="text" name="descricao">
     <p><button type="submit">Enviar Postagem</button></p>
+</div>
 </form>
+<style>
+        body {
+            background-color: rgb(24, 23, 23);
+        }
+        h1{
+            color: rgb(233, 233, 233);
+            font-size: 30px;
+            height: 35px;
+        }
+         .erros {
+            color: rgb(226, 29, 216);
+            background-color: rgb(114, 0, 0);
+            font-size: 30px;
+            height: 35px;
+        }
+        div {
+            text-align: center;
+        }
+        input {
+            height: 20px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        input[type='file'] { 
+            display: none;
+        }  
+        label { 
+            background-color: #ffffff; 
+            border-radius: 5px; 
+            color: #000000; 
+            cursor: pointer; 
+            margin: 10px; 
+            padding: 10px 30px;
+        } 
+        button {
+            line-height: 20px;
+            border-radius: 14px;
+            width: 300px;
+            font-style: initial;
+            font-size: 17px;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+        }
+</style>
+<!-- scrip para ver qual arquivo foi selecionado -->
+<script>
+    var $input = document.getElementById('imagem') 
+    var $fileName = document.getElementById('label') 
+ 
+    $input.addEventListener("chenge", function() {
+        $fileName.textContent = this.value
+    })
+    
+</script>

@@ -1,3 +1,6 @@
+{{#each erros}}
+<div class="alert alert-danger"><h1 class="erros">{{erro}}</h1></div>
+{{/each}}
 <form action="/login">
     <div>
         <h1>Clique no botão para Logar em sua conta</h1>
@@ -12,8 +15,14 @@
 </form>
 <form action="/postagem">
     <div>
-        <h1>Clique no botão para postar algo em seu feed (precisa estar logado para isso)</h1>
+        <h1>Poste algo em seu feed (Precisa estar logado)</h1>
         <button type="submit">Postar</button>
+    </div>
+</form>
+<form action="/feed">
+    <div>
+        <h1>Ir para o feed (Precisa estar logado)</h1>
+        <button type="submit">Feed</button>
     </div>
 </form>
 <form action="/deslogar" method="post">
@@ -22,4 +31,32 @@
         <button type="submit">Deslogar</button>
     </div>
 </form>
-
+<style>
+        body {
+            background-color: rgb(24, 23, 23);
+        }
+        h1{
+            color: rgb(233, 233, 233);
+            font-size: 30px;
+            height: 45px;
+        }
+        .erros {
+            color: rgb(226, 29, 216);
+            background-color: rgb(114, 0, 0);
+            font-size: 35px;
+            height: 40px;
+        }
+        div {
+            text-align: center;
+        }
+        button {
+            line-height: 20px;
+            border-radius: 14px;
+            width: 300px;
+            font-style: initial;
+            font-size: 17px;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            cursor: pointer; 
+        }
+</style>

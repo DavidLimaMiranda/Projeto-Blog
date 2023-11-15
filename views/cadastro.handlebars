@@ -1,14 +1,56 @@
-<title>Cadastro</title>
-<div>
-    <form action="/cadastrar" method="post">
-        <p>Digite seu nome: </p>
+{{#each erros}}
+    <div class="alert alert-danger"><h1 class="erros">{{erro}}<h1></div>
+{{else}}
+{{/each}}
+
+<form action="/cadastrar" method="post">
+    <div>
+        <h1>Digite seu nome: </h1>
         <input type="text" name="names">
-        <p>Dígite seu email: </p>
+        <h1>Dígite seu email: </h1>
         <input type="text" name="email">
-        <p>Dígite sua senha: </p>
+        <h1>Dígite sua senha: </h1>
         <input type="text" name="passwords">
-        <p>Dígite novamente sua senha: </p>
+        <h1>Dígite novamente sua senha: </h1>
         <input type="text" name="confirm_passwords">
-        <button type="submit">CADASTRAR</button>
-    </form>
-</div>
+        <br></br>
+        <p><button type="submit">CADASTRAR</button></p>
+    </div>
+</form>
+<style>
+        body {
+            background-color: rgb(24, 23, 23);
+        }
+        h1{
+            color: rgb(233, 233, 233);
+            font-size: 30px;
+            height: 35px;
+        }
+        .erros {
+            color: rgb(226, 29, 216);
+            background-color: rgb(114, 0, 0);
+            font-size: 25px;
+            height: 30px;
+        }
+        div {
+            text-align: center;
+        }
+        input {
+            height: 20px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+       
+        button {
+            line-height: 20px;
+            border-radius: 14px;
+            width: 300px;
+            font-style: initial;
+            font-size: 17px;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            cursor: pointer; 
+            
+        }
+</style>
