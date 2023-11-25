@@ -1,18 +1,25 @@
 {{#each erros}}
-    <div class="alert alert-danger"><h1 class="erros">{{erro}}<h1></div>
+    <div><h1 class="erros">{{erro}}</h1></div>
 {{else}}
 {{/each}}
 
-<form action="/cadastrar" method="post">
+<form action="/cadastrar" method="post" enctype="multipart/form-data">
     <div>
+        <h1>Insira sua foto de perfil</h1>
+        <h1><label for="perfil_foto" id="label">Clique aqui </label></h1>
+        <input type="file" name="foto_perfil" id="perfil_foto">
+
         <h1>Digite seu nome: </h1>
         <input type="text" name="names">
+
         <h1>Dígite seu email: </h1>
         <input type="text" name="email">
+
         <h1>Dígite sua senha: </h1>
-        <input type="text" name="passwords">
+        <input type="password" name="passwords">
+
         <h1>Dígite novamente sua senha: </h1>
-        <input type="text" name="confirm_passwords">
+        <input type="password" name="confirm_passwords">
         <br></br>
         <p><button type="submit">CADASTRAR</button></p>
     </div>
@@ -27,10 +34,10 @@
             height: 35px;
         }
         .erros {
-            color: rgb(226, 29, 216);
-            background-color: rgb(114, 0, 0);
-            font-size: 25px;
-            height: 30px;
+            color: rgb(250, 0, 0);
+            background-color: rgb(30, 0, 31);
+            font-size: 30px;
+            height: 35px;
         }
         div {
             text-align: center;
@@ -41,6 +48,17 @@
             border-radius: 4px;
             font-size: 15px;
         }
+        input[type='file'] { 
+            display: none;
+        }  
+        label { 
+            background-color: #ffffff; 
+            border-radius: 5px; 
+            color: #000000; 
+            cursor: pointer; 
+            margin: 10px; 
+            padding: 20px 30px;
+        } 
        
         button {
             line-height: 20px;
@@ -54,3 +72,12 @@
             
         }
 </style>
+<script>
+    var label = document.getElementById("label")
+    var input = document.getElementById("perfil_foto")
+
+    input.addEventListener("change", function() {
+        if(input.files.length > 0) {var nome = input.files[0].name}
+        label.innerHTML = nome
+    })
+</script>

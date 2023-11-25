@@ -1,14 +1,23 @@
 <div>
 <h1>POSTAGENS:</h1>
+
 {{#each post}}
-<h1>Perfil: {{names}}</h1>
+
+<h1>Perfil: {{names}} </h1>
+<a href="/perfil"><img src="/uploads/{{foto_perfil}}" class="foto_perfil"/></a>
+
 <h1>{{titulo}}</h1>
-<p><img src="/uploads/{{imagem_video}}" class="img"/> </p>
+
+<p><img src="/uploads/{{imagem}}" class="imagem_postagens"/></p>
+
 <h1>{{descricao}}</h1>
+
 {{/each}}
 </div>
+
 <style>
         body {
+            height: 100vh;
             background-color: rgb(24, 23, 23);
         }
         h1{
@@ -19,9 +28,67 @@
         div {
             text-align: center;
         }
-        .img {
+        .imagem_postagens {
             height: 20%;
-            width: 30%;
+            width: 25%;
             object-fit: cover;
+            border: 3px solid black;
+        }
+        .foto_perfil {
+            height: 3%;
+            width: 8%;
+            border-radius: 50%;
+            border: 4px solid rgb(66, 30, 134);
+            cursor: pointer;
+        }
+        nav.menu-lateral {
+            width: 70px;
+            height: 100%;
+            background-color: black;
+            padding: 40px 0 40px 1%;
+            box-shadow: 3px 0 0 white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            transition: .3s;
+        }
+        nav.menu-lateral:hover{
+            width: 270px;
+        }
+        .btn-expandir {
+            width: 10%;
+            padding-left: 10px;
+        }
+        .btn-expandir > i{
+            color: #ffff;
+            cursor: pointer;
+            font-size: 40px;
+        }
+        ul{
+            height: 100%;
+            list-style-type: none;
+        }
+        ul li.item-menu {
+            transition: .4s;
+
+        }
+        ul li.item-menu:hover{
+            background: rgb(29, 184, 204);
+        }
+        ul li.item-menu a{
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-size: 20px;
+            padding: 25px 0%;
+            display: flex;
+            line-height: 40px;
+        }
+        ul li.item-menu a .txt-link {
+            margin-left: 20px;
+        }
+        ul li.item-menu a .icon > i{
+            font-size: 30px;
+            margin-left: 30px;
         }
 </style>

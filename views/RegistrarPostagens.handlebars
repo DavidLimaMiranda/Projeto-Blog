@@ -9,12 +9,14 @@
     <h1>Qual será a postagem de hoje? {{usuarioLogado}}</h1>
     <h1>Titulo da postagem:</h1>
     <input type="text" name="titulo">
+
     <h1>Selecione qual imagem quer postar: </h1>
-    <br></br>
-    <h1><label for="imagem" id="label">Clique aqui </label><h1>
-    <input type="file" name="imagem_video" id="imagem">
+    <h1><label for="imagem_postagem" id="label">Clique aqui </label></h1>
+    <input type="file" name="imagem" id="imagem_postagem">
+
     <h1>Conteudo da postagem:</h1>
     <input type="text" name="descricao">
+
     <p><button type="submit">Enviar Postagem</button></p>
 </div>
 </form>
@@ -65,11 +67,12 @@
 </style>
 <!-- scrip para ver qual arquivo foi selecionado -->
 <script>
-    var $input = document.getElementById('imagem') 
-    var $fileName = document.getElementById('label') 
- 
-    $input.addEventListener("chenge", function() {
-        $fileName.textContent = this.value
+    var label = document.getElementById("label")
+    var input = document.getElementById("imagem_postagem")
+
+    input.addEventListener("change", function() {
+        if(input.files.length > 0) {var nome = input.files[0].name}
+        label.innerHTML = nome
     })
     
 </script>
