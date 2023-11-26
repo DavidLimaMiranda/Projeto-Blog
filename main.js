@@ -37,26 +37,16 @@ require("./.env")
     }}))
 app.set('view engine', 'handlebars')
 
-// Sessão
+// config Sessão
 app.use(session({
     secret:process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {secure: false, maxAge: 200000000}
 }))
-// config flash, ainda irei utilizar no front futuramente
-app.use(flash())
-
-//middlewares
-app.use((req, res, next) => {
-    res.locals.sucess_msg = req.flash("sucess_msg")
-    res.locals.error_msg = req.flash("error_msg")
-    next()
-})
 
 // config para usar a pasta uploads pra exibir as imagens
 app.use('/uploads', express.static(path.resolve(__dirname, 'uploads')))
-
 
 // body parser
 app.use(bodyParser.urlencoded({extended: true}))
@@ -293,6 +283,12 @@ app.post('/postar', upload.single("imagem") ,(req, res) => {
             console.log("Tipo de arquivo invalido")
         }
     }})
+
+app.post('/deletarpostagem', (req, res) => {
+    Post.find({where: {id: id}}).then((postagem) => {
+        postagem.destroy()
+    })
+})
 
 // Retirando o login do usuario atual logado
 app.post('/deslogar', (req, res) => {
