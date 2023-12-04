@@ -2,10 +2,26 @@
         <h1 class="titulo">Perfil</h1>
 </div>
 <div>
+    <form action="/deslogar" method="post">
+    
+    <p><button type="submit" class="opcoes">Deslogar</button></p>
+        
+    </form>
+    <form action="/ExcluirConta" method="post">
+
+    <button type="submit" class="opcoes">Excluir conta</button>
+
+    </form>
+</div>
+<div>
     <h1 class="imagem"><img src="/uploads/{{foto}}" class="foto"/></h1>
-    <h1 class="ssp">Seguindo Seguidores Publicações</h1>
+    <h1 class="ssp">Publicações</h1>
+    <h1 class="ssp">{{publicacoes}}</h1>
     <h1 class="nome">{{usuario}} </h1>
-    <h1 class="descricao"><textarea class="conteudo" name="" id="" cols="40" rows="4"></textarea></h1>
+    <form action="/EditarDescricao" method="post">
+    <h1 class="descricao"><textarea class="conteudo" name="nova_descricao" id="" cols="40" rows="4">{{descricao}}</textarea>
+    <button class="editar" type="submit">Editar Descrição</button></h1>
+    </form>
 </div>
 <div class="postagens">
     Publicações
@@ -15,14 +31,15 @@
         <p>{{titulo}}</p>
         <p><img class="publicacoes" src="/uploads/{{imagem}}" alt="Postagem não encontrada"/></p>
         <p>{{descricao}}</p>
-        <p><a href="/deletarpostagem"><button type="submit"></button></a></p>
+        <p><a href="/perfil/{{id}}"><button type="submit" class="excluir">Excluir publicação</button></a>
+           <a href="/perfil/EditarPostagem/{{id}}"><button type="submit" class="editar">Editar publicação</button></a></p>
         <b>---------------------------------------------------------------------------------------</b>
         {{/each}}
     </p>
 </div>
 <style>
         body {
-        background-color: rgb(0, 0, 0);
+            background-color: rgb(0, 0, 0);
         }
         h1{
             color: rgb(233, 233, 233);
@@ -37,6 +54,37 @@
         }
         div {
             text-align: center;
+        }
+        .opcoes {
+            font-size: 16px;
+            margin-left: 1260px;
+            border: 2px solid rgb(255, 255, 255);
+            background-color: rgb(223, 0, 223);
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+            position: static;
+        }
+        .excluir {
+            line-height: 20px;
+            border-radius: 20px;
+            width: 160px;
+            height: 30px;
+            font-style: initial;
+            font-size: 17px;
+            background-color: rgb(252, 0, 0);
+            color: rgb(0, 0, 0);
+            cursor: pointer; 
+        }
+        .editar {
+            line-height: 20px;
+            border-radius: 20px;
+            width: 160px;
+            height: 30px;
+            font-style: initial;
+            font-size: 17px;
+            background-color: rgb(0, 255, 234);
+            color: rgb(0, 0, 0);
+            cursor: pointer;
         }
         .titulo {
             color: white;
@@ -66,19 +114,20 @@
             font-size: 45px;
         }
         .descricao {
-            margin-right: 350px;
+            margin-right: 240px;
         }
         .conteudo {
             font-size: 20px;
-            width: 350px;
+            max-width: 380px;
+            min-width: 380px;
+            max-height: 50px;
+            min-height: 50px;
+            width: 380px;
             height: 50px;
             background-color: black;
-            color: white;
+            color: rgb(226, 226, 226);
+            position: static;
             
-        }
-        .ssp {
-            word-spacing: 35px;
-            margin-left: 180px;
         }
         .postagens {
             font-size: 45px;

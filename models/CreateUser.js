@@ -13,6 +13,12 @@ const CreateUser = db.tabela.define(process.env.DB_TABELA_USUARIOS,{
     },
     passwords: {
         type: db.Sequelize.TEXT 
+    },
+    descricao_perfil: {
+        type: db.Sequelize.TEXT
+    },
+    publicacoes: {
+        type: db.Sequelize.MEDIUMINT
     }
 })
 

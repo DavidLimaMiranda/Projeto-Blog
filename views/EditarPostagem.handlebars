@@ -1,29 +1,20 @@
-{{#each erros}}
-    <div><h1 class="erros">{{erro}}</h1></div>
-{{/each}}
+<form method="post" action="/EditarPostagem/{{postagem.id}}" enctype="multipart/form-data">
+<div>
+    <h1>EDITANDO POSTAGEM</h1>
+    <h1>Titulo atual da publicação:</h1>
+    <input type="text" name="titulo_novo" value="{{postagem.titulo}}">
 
-<form action="/cadastrar" method="post" enctype="multipart/form-data">
-    <div>
-        <h1>MENU DE CADASTRO</h1>
-        <h1>Insira sua foto de perfil</h1>
-        <h1><label for="perfil_foto" id="label">Clique aqui </label></h1>
-        <input type="file" name="foto_perfil" id="perfil_foto">
+    <h1>Imagem atual da publicação:</h1>
+    <h1><label for="imagem_nova" id="label">{{postagem.imagem}}</label></h1>
+    <input type="file" name="nova_imagem" id="imagem_nova">
 
-        <h1>Digite seu nome: </h1>
-        <input type="text" name="names">
+    <h1>Descrição atual da publicação</h1>
+    <input type="text" name="descricao_nova" value="{{postagem.descricao}}">
 
-        <h1>Dígite seu email: </h1>
-        <input type="text" name="email">
-
-        <h1>Dígite sua senha: </h1>
-        <input type="password" name="passwords">
-
-        <h1>Dígite novamente sua senha: </h1>
-        <input type="password" name="confirm_passwords">
-        <br></br>
-        <p><button type="submit">CADASTRAR</button></p>
-    </div>
+    <p><button type="submit">Salvar mudanças</button></p>
+</div>
 </form>
+
 <style>
         body {
             background-color: rgb(24, 23, 23);
@@ -33,9 +24,9 @@
             font-size: 30px;
             height: 35px;
         }
-        .erros {
-            color: rgb(250, 0, 0);
-            background-color: rgb(30, 0, 31);
+         .erros {
+            color: rgb(226, 29, 216);
+            background-color: rgb(114, 0, 0);
             font-size: 30px;
             height: 35px;
         }
@@ -57,9 +48,8 @@
             color: #000000; 
             cursor: pointer; 
             margin: 10px; 
-            padding: 20px 30px;
+            padding: 10px 30px;
         } 
-       
         button {
             line-height: 20px;
             border-radius: 14px;
@@ -68,16 +58,17 @@
             font-size: 17px;
             background-color: rgb(255, 255, 255);
             color: rgb(0, 0, 0);
-            cursor: pointer; 
-            
+            border: 3px solid black;
         }
 </style>
+<!-- scrip para ver qual arquivo foi selecionado -->
 <script>
     var label = document.getElementById("label")
-    var input = document.getElementById("perfil_foto")
+    var input = document.getElementById("imagem_nova")
 
     input.addEventListener("change", function() {
         if(input.files.length > 0) {var nome = input.files[0].name}
         label.innerHTML = nome
     })
+
 </script>
