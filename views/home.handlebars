@@ -1,30 +1,35 @@
 {{#each erros}}
-<div class="alert alert-danger"><h1 class="erros">{{erro}}</h1></div>
+    <div class="alert alert-danger"><h1 class="erros">{{erro}}</h1></div>
 {{/each}}
+
 <form action="/login">
     <div>
         <h1>MENU LOGIN</h1>
         <button type="submit">Logar</button>
     </div>
 </form>
+
 <form action="/cadastro">
     <div>
         <h1>MENU CADASTRO</h1>
         <button type="submit">Cadastrar-se</button>
     </div>
 </form>
+
 <form action="/postagem">
     <div>
         <h1>PUBLICAR POSTAGEM (necessario login)</h1>
         <button type="submit">Postar</button>
     </div>
 </form>
+
 <form action="/feed">
     <div>
         <h1>FEED DE POSTAGEMS(necessario login)</h1>
         <button type="submit">Feed</button>
     </div>
 </form>
+
 <style>
         body {
             background-color: rgb(24, 23, 23);

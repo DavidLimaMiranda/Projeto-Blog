@@ -58,13 +58,13 @@ const EditarPostagem = (req, res) => {
 
     let erros = []
     
-    if(req.body.titulo == "" && req.body.imagem_video == undefined && req.body.descricao == "") 
+    if(req.body.imagem_video == undefined && req.body.descricao == "") 
     {
         erros.push({erro: "Não é possivel enviar uma postagem totalmente vazia, Por favor Preencher 1 campo pelo menos"})
         res.render("EditarPostagem", {erros: erros})
     }
 
-    else if(req.body.descricao != "" && req.body.titulo == "" && req.body.imagem_video == undefined) 
+    else if(req.body.descricao != "" && req.body.imagem_video == undefined) 
     {
         erros.push({erro: "Não é permitido enviar uma postagem só com uma descrição, Por favor preencher mais 1 campo junto"})
         res.render("EditarPostagem", {erros: erros})
@@ -77,8 +77,7 @@ const EditarPostagem = (req, res) => {
             if (req.file.filename === undefined)
             {
                 postagem.update({
-                    titulo: req.body.titulo_novo,
-                    descricao: req.body.titulo_novo
+                    descricao: req.body.descricao_nova
                 })
                 .then(() => {
                         
@@ -94,7 +93,6 @@ const EditarPostagem = (req, res) => {
             else if(Valido.includes(path.extname(req.file.filename)))
             {
                 postagem.update({
-                    titulo: req.body.titulo_novo,
                     imagem: req.file.filename,
                     descricao: req.body.descricao_nova
                 })

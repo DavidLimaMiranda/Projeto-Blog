@@ -8,6 +8,8 @@ const bodyParser = require('body-parser')
 
 const multer = require("multer")
 
+const Porta = 1324
+
 require("dotenv")
 
 require("./.env")
@@ -19,6 +21,8 @@ const {storage} = require("./multer")
 const upload = multer({storage: storage})
 
 const path = require("path")
+
+const HomeController = require("./controllers/ControllerHome")
 
 const LoginController = require("./controllers/ControllerLogin")
 
@@ -60,7 +64,7 @@ app.use(bodyParser.json())
 
 // rotas
 // rota inicial
-app.get('/', (req, res) => { res.render("home") })
+app.get('/', HomeController.Home)
 
 // rota para login 
 app.get('/login', LoginController.PaginaLogin)
@@ -107,7 +111,7 @@ app.post('/EditarDescricao', ContaController.EditarDescricao)
 // Dando like nas postagens
 app.post('/feed/likes/:id', LikeController.Like)
 
-
-app.listen(process.env.PORT, () => {
-    console.log(`Servidor rodando na porta URL localhost:${PORT}`)
+// Rodando o servidor
+app.listen(Porta, () => {
+    console.log(`Servidor rodando na porta URL localhost:${Porta}`)
 })

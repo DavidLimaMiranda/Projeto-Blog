@@ -1,12 +1,14 @@
 Banco de dados utilizado MySQL
 
-DB_SENHA = "SENHA DO SEU BANCO DE DADOS"
-DB_DATABASE = "NOME DA SUA DATABASE"
-DB_TABELA_USUARIOS = "NOME DA TABELA DE USUARIOS"
-DB_TABELA_POSTAGENS = "NOME DA TABELA DE POSTAGENS"
-DB_TABELA_USERCURTIU = "NOME DA TABELA DE CURTIDAS"
+DB_SENHA = Senha do seu banco de dados
+DB_DATABASE = Nome da sua DATABASE
+DB_TABELA_USUARIOS = Nome da tabela de usuarios
+DB_TABELA_POSTAGENS = Nome da tabela de postagens
+DB_TABELA_USERCURTIU = Nome da tabela de curtidas 
 DB_ROOT = "root"
-SECRET = 'SECRET PRA DEIXAR MAIS SEGURO AINDA A APLICAÇÂO'
-PORT = NUMERO QUE DESJA QUE A PORTA RODE
+SECRET = Uma senha extra pra deixar mais seguro a aplicação
+DB_HOST = "localhost" ou o host que deseja
+DB_PORT = 3306, Porta padrão do mysql
+DB_DIALECT = "mysql"
 
-depois só trocar o nome do arquivo pra '.env'
+depois só trocar o nome do arquivo para '.env' que funcionara normalmente

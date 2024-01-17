@@ -87,8 +87,13 @@ const Cadastrar = async (req, res) => {
                 }).catch((error) => {
                     console.log(`Houve um erro ao se cadastrar: ${error}`)
                 })
+                }
+                else
+                {
+                    erros.push({erro: "Esse tipo de arquivo não é permitido"})
+                    res.render('cadastro', {erros})
+                }
             }
-        }
         }).catch((error) => 
         {
             console.log(error)

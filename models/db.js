@@ -4,9 +4,10 @@ const Sequelize = require('sequelize')
 const tabela = new Sequelize(
     process.env.DB_DATABASE, 
     process.env.DB_ROOT, 
-    process.env.DB_SENHA, {
-    host: "localhost",
-    dialect: 'mysql'
+    process.env.DB_SENHA, 
+    {
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT
 })
 
 module.exports = {

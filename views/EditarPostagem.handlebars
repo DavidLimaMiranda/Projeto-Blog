@@ -1,14 +1,12 @@
 <form method="post" action="/EditarPostagem/{{postagem.id}}" enctype="multipart/form-data">
 <div>
     <h1>EDITANDO POSTAGEM</h1>
-    <h1>Titulo atual da publicação:</h1>
-    <input type="text" name="titulo_novo" value="{{postagem.titulo}}">
-
+    
     <h1>Imagem atual da publicação:</h1>
     <h1><label for="imagem_nova" id="label">{{postagem.imagem}}</label></h1>
     <input type="file" name="nova_imagem" id="imagem_nova">
 
-    <h1>Descrição atual da publicação</h1>
+    <h1>Descrição atual da publicação:</h1>
     <input type="text" name="descricao_nova" value="{{postagem.descricao}}">
 
     <p><button type="submit">Salvar mudanças</button></p>

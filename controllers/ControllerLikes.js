@@ -29,7 +29,7 @@ const Like = (req, res) => {
                         })                
                         .then(() => {
 
-                            // deletando no banco que ele já curtiu para que possa dar like novamente
+                            // deletando no banco que ele já curtiu para que possa recolocar o like
                             curtiu.destroy({where: {postagem_id: req.params.id}}).then(() => {
 
                                 res.redirect('/feed')

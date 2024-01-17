@@ -5,10 +5,10 @@ const db = require('./db')
 const Curtiu = db.tabela.define(process.env.DB_TABELA_USERCURTIU, {
 
     email: {
-        type: db.Sequelize.TEXT
+        type: db.Sequelize.STRING
     },
     postagem_id: {
-        type: db.Sequelize.MEDIUMINT
+        type: db.Sequelize.INTEGER
     }
 })
 

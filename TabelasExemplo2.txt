@@ -1,7 +1,0 @@
-CREATE TABLE Nome da sua tabela de curtidas(
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  email TEXT NOT NULL,
-  postagem_id INT NOT NULL,
-  createdAt DATETIME NULL,
-  updatedAt DATETIME NULL
-);

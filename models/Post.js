@@ -4,25 +4,22 @@ const db = require('./db')
 const Post = db.tabela.define(process.env.DB_TABELA_POSTAGENS, {
 
     foto_perfil: {
-        type: db.Sequelize.TEXT
+        type: db.Sequelize.STRING
     },
     names: {
-        type: db.Sequelize.TEXT
+        type: db.Sequelize.STRING
     },
     email: {
-        type: db.Sequelize.TEXT
-    },
-    titulo: {
         type: db.Sequelize.STRING
     },
     imagem: {
-        type: db.Sequelize.TEXT
+        type: db.Sequelize.STRING
     },
     descricao: {
-        type: db.Sequelize.TEXT
+        type: db.Sequelize.STRING
     },
     likes: {
-        type: db.Sequelize.MEDIUMINT
+        type: db.Sequelize.INTEGER
     }
 })
 
