@@ -60,6 +60,7 @@ const Cadastrar = async (req, res) => {
             }
 
             else {
+                
                 if(Valido.includes(path.extname(req.file.filename))) 
                 {
                     User.create({
@@ -94,11 +95,6 @@ const Cadastrar = async (req, res) => {
                     res.render('cadastro', {erros})
                 }
             }
-        }).catch((error) => 
-        {
-            console.log(error)
-            erros.push({erro: "Usuario não encontrado"})
-            res.render('cadastro', {erros: erros})
         })
     }
 }

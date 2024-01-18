@@ -21,7 +21,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      password: {
+      passwords: {
         allowNull: false,
         type: Sequelize.STRING
       },
@@ -32,6 +32,14 @@ module.exports = {
       publicacoes: {
         allowNull: false,
         type: Sequelize.MEDIUMINT
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },
