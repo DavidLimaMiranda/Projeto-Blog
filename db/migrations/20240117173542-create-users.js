@@ -1,9 +1,10 @@
 'use strict';
+require('dotenv').config()
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('users', {
+    await queryInterface.createTable(process.env.DB_TABELA_USUARIOS, {
       id: {
         autoIncrement: true,
         primaryKey: true,
