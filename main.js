@@ -6,7 +6,7 @@ const handlebars = require('express-handlebars')
 
 const bodyParser = require('body-parser')
 
-const Porta = 10000
+const Porta = 1324
 
 require("dotenv").config()
 

@@ -80,7 +80,9 @@
     var input = document.getElementById("perfil_foto")
 
     input.addEventListener("change", function() {
-        if(input.files.length > 0) {var nome = input.files[0].name}
+        if(input.files.length > 0) {
+            var nome = input.files[0].name
+        }
         label.innerHTML = nome
     })
 </script>

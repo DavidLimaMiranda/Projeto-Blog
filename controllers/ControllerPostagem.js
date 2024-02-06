@@ -35,15 +35,15 @@ const Postagem = (req, res) => {
 
     if(req.session.login)
     {
-        if(req.body.imagem_video == undefined && req.body.descricao == "") 
+        if(req.body.imagem == undefined && req.body.descricao == "") 
         {
-            erros.push({erro: "Não é possivel enviar uma postagem totalmente vazia, Por favor Preencher 1 campo pelo menos"})
+            erros.push({erro: "Não é possivel enviar uma postagem totalmente vazia, Preencha os campos necessarios."})
             res.render("RegistrarPostagens", {erros: erros})
         }
 
-        else if(req.body.descricao != "" && req.body.imagem_video == undefined) 
+        else if(req.body.descricao != "" && req.file == undefined) 
         {
-            erros.push({erro: "Não é permitido enviar uma postagem só com uma descrição, Por favor preencher mais 1 campo junto"})
+            erros.push({erro: "Não é permitido enviar uma postagem só com uma descrição, Envie uma foto/gif junto."})
             res.render("RegistrarPostagens", {erros: erros})
         }
 

@@ -30,20 +30,24 @@ const Cadastrar = async (req, res) => {
     if(req.body.names == "") 
     {
         erros.push({erro: "Por favor, Prencher o campo de nome"})
+        res.render('cadastro', {erros: erros})
     }
 
     if(req.body.email == "") 
     {
-        erros.push({erro: "Por favor, Prencher o campo de email com um email valído"})    
+        erros.push({erro: "Por favor, Prencher o campo de email com um email valído"})
+        res.render('cadastro', {erros: erros})    
+    }
+
+    if(req.file == undefined)
+    {
+        erros.push({erro: "Por favor, Coloque uma foto de perfil."})
+        res.render('cadastro', {erros: erros})
     }
     
     if(req.body.passwords != req.body.confirm_passwords || req.body.passwords == "")
     {
         erros.push({erro: "Senhas incompativeis, Digite novamente com mais cuidado"})
-    }
-    if(erros.length > 0)
-    {
-        console.log(erros)
         res.render('cadastro', {erros: erros})
     }
     else {
