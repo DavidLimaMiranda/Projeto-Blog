@@ -1,0 +1,86 @@
+{{#each erros}}
+    <div><h1 class="erros">{{erro}}</h1></div>
+{{/each}}
+
+<form action="/cadastrar" method="post" enctype="multipart/form-data">
+    <div>
+        <h1>MENU DE CADASTRO</h1>
+        <h1>Insira sua foto de perfil</h1>
+
+        <h1>
+            <label for="perfil_foto" id="label">Clique aqui</label>
+        </h1>
+        <input type="file" name="foto_perfil" id="perfil_foto">
+
+        <h1>Digite seu nome: </h1>
+        <input type="text" name="names">
+
+        <h1>Dígite seu email: </h1>
+        <input type="text" name="email">
+
+        <h1>Dígite sua senha: </h1>
+        <input type="password" name="passwords">
+
+        <h1>Dígite novamente sua senha: </h1>
+        <input type="password" name="confirm_passwords">
+        <br></br>
+        <p><button type="submit">CADASTRAR</button></p>
+    </div>
+</form>
+<style>
+        body {
+            background-color: rgb(24, 23, 23);
+        }
+        h1{
+            color: rgb(233, 233, 233);
+            font-size: 30px;
+            height: 35px;
+        }
+        .erros {
+            color: rgb(250, 0, 0);
+            background-color: rgb(30, 0, 31);
+            font-size: 30px;
+            height: 35px;
+        }
+        div {
+            text-align: center;
+        }
+        input {
+            height: 20px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        input[type='file'] { 
+            display: none;
+        }  
+        label { 
+            background-color: #ffffff; 
+            border-radius: 5px; 
+            color: #000000; 
+            cursor: pointer; 
+            margin: 10px; 
+            padding: 20px 30px;
+        } 
+       
+        button {
+            line-height: 20px;
+            border-radius: 14px;
+            width: 300px;
+            font-style: initial;
+            font-size: 17px;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            cursor: pointer; 
+            
+        }
+</style>
+<script>
+    var label = document.getElementById("label")
+    var input = document.getElementById("perfil_foto")
+
+    input.addEventListener("change", function() {
+        if(input.files.length > 0) {var nome = input.files[0].name}
+        label.innerHTML = nome
+    })
+</script>

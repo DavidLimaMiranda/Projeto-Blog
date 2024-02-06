@@ -1,0 +1,72 @@
+<form method="post" action="/EditarPostagem/{{postagem.id}}" enctype="multipart/form-data">
+<div>
+    <h1>EDITANDO POSTAGEM</h1>
+    
+    <h1>Imagem atual da publicação:</h1>
+    <h1><label for="imagem_nova" id="label">{{postagem.imagem}}</label></h1>
+    <input type="file" name="nova_imagem" id="imagem_nova">
+
+    <h1>Descrição atual da publicação:</h1>
+    <input type="text" name="descricao_nova" value="{{postagem.descricao}}">
+
+    <p><button type="submit">Salvar mudanças</button></p>
+</div>
+</form>
+
+<style>
+        body {
+            background-color: rgb(24, 23, 23);
+        }
+        h1{
+            color: rgb(233, 233, 233);
+            font-size: 30px;
+            height: 35px;
+        }
+         .erros {
+            color: rgb(226, 29, 216);
+            background-color: rgb(114, 0, 0);
+            font-size: 30px;
+            height: 35px;
+        }
+        div {
+            text-align: center;
+        }
+        input {
+            height: 20px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        input[type='file'] { 
+            display: none;
+        }  
+        label { 
+            background-color: #ffffff; 
+            border-radius: 5px; 
+            color: #000000; 
+            cursor: pointer; 
+            margin: 10px; 
+            padding: 10px 30px;
+        } 
+        button {
+            line-height: 20px;
+            border-radius: 14px;
+            width: 300px;
+            font-style: initial;
+            font-size: 17px;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            border: 3px solid black;
+        }
+</style>
+<!-- scrip para ver qual arquivo foi selecionado -->
+<script>
+    var label = document.getElementById("label")
+    var input = document.getElementById("imagem_nova")
+
+    input.addEventListener("change", function() {
+        if(input.files.length > 0) {var nome = input.files[0].name}
+        label.innerHTML = nome
+    })
+
+</script>

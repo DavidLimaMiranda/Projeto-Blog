@@ -1,0 +1,49 @@
+{{#each erros}}
+    <div class="alert alert-danger"><h1 class="erros">{{erro}}</h1></div>
+{{/each}}
+<form action="/logar" method="post">
+<div>
+    <h1>MENU DE LOGIN</h1>
+    <h1>Insira seu email:</h1>
+    <input type="text" name="email">
+    <h1>Insira sua senha:</h1>
+    <input type="password" name="passwords">
+    <br></br>
+    <p><button type="submit">Logar-se</button></p>
+</div>
+</form>
+<style>
+        body {
+            background-color: rgb(24, 23, 23);
+        }
+        h1{
+            color: rgb(233, 233, 233);
+            font-size: 30px;
+            height: 35px;
+        }
+        .erros {
+            color: rgb(250, 0, 0);
+            background-color: rgb(30, 0, 31);
+            font-size: 30px;
+            height: 35px;
+        }
+        div {
+            text-align: center;
+        }
+        input {
+            height: 20px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        button {
+            line-height: 20px;
+            border-radius: 14px;
+            width: 300px;
+            font-style: initial;
+            font-size: 17px;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            cursor: pointer; 
+        }
+</style>
