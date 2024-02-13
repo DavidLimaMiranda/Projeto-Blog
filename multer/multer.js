@@ -10,7 +10,12 @@ const storage = multer.diskStorage({
         const time = new Date().getTime()
 
         cb(null, `${time}-${file.originalname}`)
-    },
+    }
+})
+
+const validation = multer({ 
+    storage: storage ,
+
     limits: {
         fileSize: 10 * 1024 * 1024 // 10MB
     },
@@ -27,12 +32,13 @@ const storage = multer.diskStorage({
 
         if(!Valido.includes(path.extname(file.originalname)))
         {
-            return cb(null, false)
+            cb(null, false)
         }
-        cb(null, true)
+        else
+        {
+            cb(null, true)
+        }
     }
 })
 
-const upload = multer({ storage: storage })
-
-module.exports = upload
+module.exports = validation

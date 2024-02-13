@@ -1,26 +1,26 @@
 {{#each erros}}
-    <div class="alert alert-danger"><h1 class="erros">{{erro}}</h1></div>
+    <div><h1 class="erros">{{erro}}</h1></div>
 {{/each}}
 
-<form method="post" action="/postar" enctype="multipart/form-data">
+<form method="post" action="/EditarPostagem/{{postagem.id}}" enctype="multipart/form-data">
 <div>
-    <h1>MENU DE POSTAGEM</h1>
-    <h1>Qual será a postagem de hoje?</h1>
+    <h1>EDITANDO POSTAGEM</h1>
+    
+    <h1>Imagem atual da publicação:</h1>
+    <h1><label for="imagem_nova" id="label">{{postagem.imagem}}</label></h1>
+    <input type="file" name="nova_imagem" id="imagem_nova">
 
-    <h1>Selecione qual imagem quer postar:</h1>
-    <h1><label for="imagem_postagem" id="label">Clique aqui </label></h1>
-    <input type="file" name="imagem" id="imagem_postagem">
+    <h1>Descrição atual da publicação:</h1>
+    <input type="text" name="descricao_nova" value="{{postagem.descricao}}">
 
-    <h1>Descrição da postagem:</h1>
-    <input type="text" name="descricao">
-
-    <p><button type="submit">Enviar Postagem</button></p>
+    <p><button type="submit">Salvar mudanças</button></p>
 </div>
 </form>
+
 <style>
          .erros {
             color: rgb(226, 29, 216);
-            background-color: rgb(0, 0, 0);
+            background-color: rgb(114, 0, 0);
             font-size: 30px;
             height: 35px;
         }
@@ -55,12 +55,13 @@
 </style>
 <!-- scrip para ver qual arquivo foi selecionado -->
 <script>
-    var label = document.getElementById("label")
-    var input = document.getElementById("imagem_postagem")
+        var input = document.getElementById("imagem_nova");
+        var label = document.getElementById("label");
 
-    input.addEventListener("change", function() {
-        if(input.files.length > 0) {var nome = input.files[0].name}
-        label.innerHTML = nome
-    })
-    
+        input.addEventListener("change", function() {
+            if (input.files.length > 0) {
+                var nome = input.files[0].name;
+                label.innerHTML = nome;
+            }
+        })
 </script>

@@ -40,7 +40,9 @@
         
         <p class="postDescricao">{{descricao}}</p>
         
-        <p><a href="/perfil/{{id}}"><button type="submit" class="excluir">Excluir publicação</button></a></p>
+        <p><a href="/perfil/{{id}}"><button type="submit" class="excluir">Excluir publicação</button></a>
+        
+        <a href="/perfil/EditarPostagem/{{id}}"><button type="submit" class="editar">Editar publicação</button></a></p></p>
 
         {{/each}}
         <br>
@@ -104,10 +106,10 @@
             margin-right: 75%;
         }
         .publicacoes {
-            max-width: 30%;
-            max-height: 20%;
-            min-width: 300px;
-            min-height: 300px;
+            max-width: 500px;
+            max-height: 500px;
+            min-width: 200px;
+            min-height: 200px;
             object-fit: cover;
             border: 3px solid black;
         }

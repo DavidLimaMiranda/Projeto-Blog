@@ -1,8 +1,4 @@
-const multer = require("multer")
-
-const {storage} = require("../multer/multer")
-
-const upload = multer({storage: storage})
+const myMulter = require("../multer/multer")
 
 const HomeController = require("../controllers/ControllerHome")
 
@@ -49,16 +45,13 @@ routes.get('/perfil/:id', PerfilController.DeletarPostagem)
 routes.get('/perfil/EditarPostagem/:id', PerfilController.PaginaEditarPostagem)
 
 // Registrando um usuário e usando midleware "multer" para baixar a imagem de perfil
-routes.post('/cadastrar', upload.single("foto_perfil") , CadastrarController.Cadastrar)
+routes.post('/cadastrar', myMulter.single("foto_perfil") , CadastrarController.Cadastrar)
 
 // Logando em uma conta
 routes.post("/logar", LoginController.Login)
 
 // Registrando postagens dos usuários e usando midleware "multer" para baixar a imagem da postagem
-routes.post('/postar', upload.single("imagem") , PostagemController.Postagem)
-
-// Editando a postagem selecionada pelo usuario e usando midleware "multer" para trocar a imagem da postagem
-routes.post('/EditarPostagem/:id', upload.single("nova_imagem"), PerfilController.EditarPostagem)
+routes.post('/postar', myMulter.single("imagem") , PostagemController.Postagem)
 
 // Retirando o login do usuario atual logado
 routes.post('/deslogar', ContaController.Deslogar)
@@ -68,6 +61,9 @@ routes.post('/ExcluirConta', ContaController.Excluir)
 
 // Editando a caixa de descrição do perfil
 routes.post('/EditarDescricao', ContaController.EditarDescricao)
+
+// Editando postagem selecionada
+routes.post('/EditarPostagem/:id', myMulter.single("nova_imagem"), PerfilController.EditarPostagem)
 
 // Dando like nas postagens
 routes.post('/feed/likes/:id', LikeController.Like)

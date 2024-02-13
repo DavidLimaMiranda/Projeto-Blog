@@ -2,8 +2,6 @@ const User = require("../models/User")
 
 const Post = require("../models/Post")
 
-const path = require("path")
-
 const PaginaPostagem = (req, res) => {
 
     let erros = []
@@ -11,10 +9,10 @@ const PaginaPostagem = (req, res) => {
     if(req.session.login)
     {
         res.render("RegistrarPostagens", {usuarioLogado: req.session.login})
-    }
-    else 
+    } 
+    else
     {
-        erros.push({erro: "Você não esta logado em uma conta para postar algo"})
+        erros.push({erro: "Você não esta logado em uma conta para postar algo"})   
         res.render("home", {erros: erros})
     }
 }
@@ -33,25 +31,23 @@ const Postagem = (req, res) => {
 
     let erros = []
 
-    if(req.session.login)
+    if (req.body.imagem == undefined &&  req.body.descricao === "") 
     {
-        if(req.body.imagem == undefined && req.body.descricao == "") 
-        {
-            erros.push({erro: "Não é possivel enviar uma postagem totalmente vazia, Preencha os campos necessarios."})
-            res.render("RegistrarPostagens", {erros: erros})
-        }
+        erros.push({ erro: "Não é possível enviar uma postagem totalmente vazia. Preencha os campos necessários." });
+    } 
+    else if (!req.file) 
+    {
+        erros.push({ erro: "Tipo de arquivo inválido, Apenas fotos/gifs." })  
+    } 
+    if (erros.length > 0) 
+    {
+        res.render("RegistrarPostagens", { erros: erros })
+    }
 
-        else if(req.body.descricao != "" && req.file == undefined) 
+    else 
+    {
         {
-            erros.push({erro: "Não é permitido enviar uma postagem só com uma descrição, Envie uma foto/gif junto."})
-            res.render("RegistrarPostagens", {erros: erros})
-        }
-
-        else 
-        {
-            if(Valido.includes(path.extname(req.file.filename)))
-            {
-                User.findOne({where: {email: req.session.email}}).then((usuario) => {
+            User.findOne({where: {email: req.session.email}}).then((usuario) => {
 
                 Post.create({
                     foto_perfil: usuario.foto_perfil,
@@ -69,14 +65,9 @@ const Postagem = (req, res) => {
                     console.log(error)
                 })
             })
-        }
-            else 
-            {
-                erros.push({erro: "Tipo de arquivo inválido"})
-                res.render('RegistrarPostagens', {erros: erros})
-            }
-        }
+        }    
     }
 }
+
 
 module.exports = {PaginaPostagem, Postagem}

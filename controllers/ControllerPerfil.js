@@ -2,8 +2,6 @@ const User = require("../models/User")
 
 const Post = require("../models/Post")
 
-const path = require("path")
-
 const  PaginaPerfil = (req, res) => {
 
     let erros = []
@@ -44,39 +42,25 @@ const PaginaEditarPostagem = (req, res) => {
     }
 }
 
-const EditarPostagem = (req, res) => {
 
-    const Valido = 
-    [
-        ".png",
-        ".jpg",
-        ".jpeg",
-        ".bmp",
-        ".webp",
-        ".gif"
-    ]
+const EditarPostagem = (req, res) => {
 
     let erros = []
     
-    if(req.body.imagem_video == undefined && req.body.descricao == "") 
+    if (req.body.descricao === "" && !req.file && !req.body.nova_imagem) 
     {
-        erros.push({erro: "Não é possivel enviar uma postagem totalmente vazia, Por favor Preencher 1 campo pelo menos"})
-        res.render("EditarPostagem", {erros: erros})
+        erros.push({ erro: "Não é possível enviar uma postagem totalmente vazia. Preencha pelo menos um campo." });
+        res.render("EditarPostagem", { erros: erros });
     }
-
-    else if(req.body.descricao != "" && req.body.imagem_video == undefined) 
-    {
-        erros.push({erro: "Não é permitido enviar uma postagem só com uma descrição, Por favor preencher mais 1 campo junto"})
-        res.render("EditarPostagem", {erros: erros})
-    }
-
+    
     else
     {    
         Post.findOne({where: {id: req.params.id}}).then((postagem) => {
 
-            if (req.file.filename === undefined)
+            if (req.file)
             {
                 postagem.update({
+                    imagem: req.file.filename,
                     descricao: req.body.descricao_nova
                 })
                 .then(() => {
@@ -90,10 +74,9 @@ const EditarPostagem = (req, res) => {
                 })
             }
             
-            else if(Valido.includes(path.extname(req.file.filename)))
+            else 
             {
                 postagem.update({
-                    imagem: req.file.filename,
                     descricao: req.body.descricao_nova
                 })
                 .then(() => {
@@ -102,9 +85,9 @@ const EditarPostagem = (req, res) => {
                 })              
                 .catch((error) => {
     
-                console.log(`Houve um erro ao salvar as alterações: ${error}`)
-                res.redirect('/perfil')
-                })
+                    erros.push({erro: `Houve um erro interno ao salvar as mudanças: ${error}` })
+                    res.render('EditarPostagem', {erros:erros})
+                })   
             }
         })
     } 
@@ -145,6 +128,6 @@ module.exports =
     {
     PaginaPerfil, 
     PaginaEditarPostagem,
-    EditarPostagem, 
+    EditarPostagem,
     DeletarPostagem
     }
